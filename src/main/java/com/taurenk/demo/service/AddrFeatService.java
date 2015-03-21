@@ -5,6 +5,8 @@ import com.taurenk.demo.repository.AddrFeatRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by tauren on 3/21/15.
  */
@@ -23,4 +25,15 @@ public class AddrFeatService {
     public AddrFeat getAddrFeat(Integer gid) {
         return addrFeatRepo.findOne(gid);
     }
+
+    /**
+     *
+     * @param fullname
+     * @return
+     */
+    public List<AddrFeat> featByName(String fullname) {
+        return addrFeatRepo.findByFullname(fullname);
+    }
+
+
 }

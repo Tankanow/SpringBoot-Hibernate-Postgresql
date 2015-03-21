@@ -1,7 +1,9 @@
 package com.taurenk.demo.config;
 
 import org.apache.commons.dbcp.BasicDataSource;
-import org.hibernate.jpa.HibernatePersistenceProvider;
+import org.hibernate.ejb.HibernatePersistence;
+//import org.hibernate.jpa.HibernatePersistenceProvider;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -32,10 +34,12 @@ public class WebAppConfig {
             DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
         emf.setPackagesToScan("com.taurenk.demo.model");
-        emf.setPersistenceProvider(new HibernatePersistenceProvider());
+        //emf.setPersistenceProvider(new HibernatePersistenceProvider());
+        emf.setPersistenceProvider(new HibernatePersistence());
         Properties jpaProperties = new Properties();
         //jpaProperties.setProperty("hibernate.hbm2ddl.auto", "create");
         jpaProperties.setProperty("hibernate.show_sql", "true");
+        jpaProperties.setProperty("hibernate.dialect", "org.hibernate.spatial.dialect.postgis.PostgisDialect");
         emf.setJpaProperties(jpaProperties);
         emf.setDataSource(dataSource);
         return emf;

@@ -1,5 +1,7 @@
 package com.taurenk.demo.model;
 
+import org.hibernate.annotations.Type;
+import com.vividsolutions.jts.geom.MultiLineString;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -28,7 +30,9 @@ public class AddrFeat {
 
     private String zipr;
 
-    private String geom;
+    @Type(type="org.hibernate.spatial.GeometryType")
+    private MultiLineString geom;
+    //private String geom;
 
     private String name;
 
@@ -102,14 +106,27 @@ public class AddrFeat {
         this.zipr = zipr;
     }
 
+    /**
+     * Note: Jackson CANNOT MultilineStrings.
+     * Need to convert this value to string.
+     * TODO: parse out into list.
+     * @return geom.toString()
+     */
     public String getGeom() {
-        return geom;
+        return geom.toString();
     }
-
-    public void setGeom(String geom) {
+    public void setGeom(MultiLineString geom) {
         this.geom = geom;
     }
 
+    /*
+    public Geometry getGeom() {
+        return geom;
+    }
+    public void setGeom(Geometry geom) {
+        this.geom = geom;
+    }
+    */
     public String getName() {
         return name;
     }
@@ -141,4 +158,5 @@ public class AddrFeat {
     public void setSuftypabv(String suftypabrv) {
         this.suftypabrv = suftypabrv;
     }
+
 }
