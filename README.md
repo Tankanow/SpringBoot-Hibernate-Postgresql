@@ -21,3 +21,7 @@ The AddrFeat.geom column is of the geometry type MultiLineString. Jackson cannot
 
 
 ** The geo data/PostgreSQL DB mentioned is from a differenct project of mine. Will post DB build scripts soon!
+
+Resources:
+http://www.hibernatespatial.org/documentation/documentation/
+
