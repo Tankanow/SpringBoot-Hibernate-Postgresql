@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/places")
 public class PlaceController {
 
-
     @Autowired
     private PlaceService placeService;
 
